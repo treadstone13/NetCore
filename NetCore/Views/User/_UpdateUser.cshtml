@@ -1,0 +1,62 @@
+﻿@using System.Collections.Generic
+@using System.Linq
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Http.Authentication
+@model NetCore.Models.User.UserModel
+@inject SignInManager<ApplicationUser> SignInManager
+
+@{
+    ViewData["Title"] = "Update User";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div id="userUpdateModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Update User</h4>
+            </div>
+            <div class="modal-body">
+
+                <form asp-route-returnurl="@ViewData["ReturnUrl"]" asp-action="UpdateUser" asp-controller="User" method="post">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="form-group">
+                            <label asp-for="Id"></label>
+                            <input asp-for="Id" id="UserID" class="form-control" />
+                            <span asp-validation-for="Id" class="text-danger"></span>
+                        </div>
+                    <div class="form-group">
+                        <label asp-for="Email"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Password"></label>
+                        <input asp-for="Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="ConfirmPassword"></label>
+                        <input asp-for="ConfirmPassword" class="form-control" />
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                    </div>
+
+                    
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ApplicationRoleId, "Id")
+                        @Html.DropDownListFor(model => model.ApplicationRoleId, ViewBag.modelSelectList.ApplicationRoles as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.ApplicationRoleId, null, new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,10 @@
+﻿@{
+    ViewData["Title"] = "UserRole";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@await Html.PartialAsync("~/Views/Role/_UserRoleList.cshtml")
+
+@await Html.PartialAsync("~/Views/Role/_AddUserRole.cshtml")
+
+@await Html.PartialAsync("~/Views/Role/_UpdateRole.cshtml")

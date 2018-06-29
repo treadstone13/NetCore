@@ -1,0 +1,9 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@await Html.PartialAsync("~/Views/User/_UserList.cshtml")
+@await Html.PartialAsync("~/Views/User/_AddUser.cshtml")
+@await Html.PartialAsync("~/Views/User/_UpdateUser.cshtml")

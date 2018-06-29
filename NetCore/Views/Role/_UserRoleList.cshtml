@@ -1,0 +1,54 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@using Microsoft.AspNetCore.Identity
+@using NetCore.Models
+@using X.PagedList;
+@using X.PagedList.Mvc.Core
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="row">
+        <h3 class="left">User Role</h3>
+        <a class="btn btn-primary right" id="AddUserRole">Add Role</a>
+        <br />
+        <br />
+        <div class="form-group">
+
+            <table class="table">
+                <tr>
+                    <td><a asp-action="Index" asp-route-sortOrder="@ViewData["IDSortParm"]">ID</a></td>
+                    <td><a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">Name</a></td>
+                    <td>CreatedDate</td>
+                    <td>Description</td>
+                    <td>IPAddress</td>
+                    <td>Action</td>
+                </tr>
+                @foreach (var item in ViewBag.UserRoleList)
+                {
+
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Name</td>
+                        <td>@item.CreatedDate</td>
+                        <td>@item.Description</td>
+                        <td>@item.IPAddress</td>
+                        <td><a class="updateR">Update</a></td>
+                        <td><a asp-controller="Role" asp-action="DeleteRole" asp-route-id="@item.Id">Delete</a></td>
+                    </tr>
+
+                }
+            </table>
+            @*@Html.PagedListPager((IPagedList)ViewBag.onePageOfRole, page => Url.Action("UserRole", new { page }))*@
+        </div>
+    </div>
+}
+
+
+
+<script>
+
+
+</script>

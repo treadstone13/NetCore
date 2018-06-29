@@ -1,0 +1,52 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@using Microsoft.AspNetCore.Identity
+@using NetCore.Models
+@using X.PagedList;
+@using X.PagedList.Mvc.Core
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="row">
+        <h3 class="left">Course List</h3>
+        <a class="btn btn-primary right" id="AddCourse">Add Course</a>
+        <br />
+        <br />
+        <div class="form-group">
+
+            <table class="table">
+                <tr>
+                    <td><a asp-action="Course" asp-route-sortOrder="@ViewData["IDSortParm"]">CourseID</a></td>
+                    <td><a asp-action="Course" asp-route-sortOrder="@ViewData["NameSortParm"]">Title</a></td>
+                    <td>TotalTime</td>
+                    <td>Address</td>
+                    <td>StartTime</td>                 
+                    <td>Action</td>
+                </tr>
+                @foreach (var item in ViewBag.onePageOfCourse)
+                {
+
+                    <tr>
+                        <td>@item.CourseID</td>
+                        <td>@item.Title</td>
+                        <td>@item.TotalTime</td>
+                        <td>@item.StartTime</td>                       
+                        <td><a class="updateC">Update</a></td>
+                        <td><a asp-controller="Home" asp-action="DeleteCourse" asp-route-id="@item.CourseID">Delete</a></td>
+
+                    </tr>
+
+                }
+            </table>
+            @Html.PagedListPager((IPagedList)ViewBag.onePageOfCourse, page => Url.Action("Course", new { page }))
+        </div>
+    </div>
+
+
+
+
+}
