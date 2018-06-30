@@ -72,7 +72,7 @@ namespace NetCore.Controllers
                     return RedirectToAction("UserRole", "Role");
                 }
             }
-            return View(model);
+            return View("UserRole");
         }
 
 
