@@ -6,7 +6,7 @@ using DTO.Models.School;
 
 namespace BIZ.DI.Interfaces
 {
-    public interface ICourseRepository
+    public interface ICourseRepository<Course>
     {
         IEnumerable<Course> GetCourses();
         Course GetCourse(Course course);

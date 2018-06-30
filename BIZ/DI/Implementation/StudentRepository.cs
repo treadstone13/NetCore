@@ -8,7 +8,7 @@ using DTO.Data;
 
 namespace BIZ.DI.Implementation
 {
-    public class StudentRepository : IStudentRepository
+    public class StudentRepository : IStudentRepository<Student>
     {
         private ApplicationDbContext ctx;
         public StudentRepository(ApplicationDbContext aplicationDbContext)

@@ -8,7 +8,7 @@ using DTO.Data;
 
 namespace BIZ.DI.Implementation
 {
-    public class CourseRepository : ICourseRepository
+    public class CourseRepository : ICourseRepository<Course>
     {
         private ApplicationDbContext ctx;
         public CourseRepository(ApplicationDbContext aplicationDbContext)

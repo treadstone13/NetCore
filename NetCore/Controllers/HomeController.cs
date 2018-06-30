@@ -11,18 +11,17 @@ using BIZ.DI.Interfaces;
 using DTO.Models;
 using DTO.Models.School;
 using X.PagedList;
+using BIZ.DI.Implementation;
 
 namespace NetCore.Controllers
 {    
     public class HomeController : Controller
     {
-        private IStudentRepository _StudentRepository;
-        private ICourseRepository _CourseRepository;
+        private readonly IUnitofWork _unitofWork;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        public HomeController(IStudentRepository studentRepository, ICourseRepository courseRepository, IHttpContextAccessor httpContextAccessor)
+        public HomeController(IUnitofWork unitofWork, IHttpContextAccessor httpContextAccessor)
         {
-            _StudentRepository = studentRepository;
-            _CourseRepository = courseRepository;
+            _unitofWork = unitofWork;
             _httpContextAccessor = httpContextAccessor;
 
         }                
@@ -32,8 +31,8 @@ namespace NetCore.Controllers
             ViewData["CurrentSort"] = sortOrder;
             ViewData["IDSortParm"] = sortOrder == "id_desc" ? "" : "id_desc";
 
-            var ListAll =  _StudentRepository.GetStudents();
-            ViewBag.CourseList = _CourseRepository.GetCourses().Select(c => new SelectListItem { Text = c.Title.ToString(), Value = c.CourseID.ToString() });
+            var ListAll =  _unitofWork.StudentRepository.GetStudents();
+            ViewBag.CourseList = _unitofWork.CourseRepository.GetCourses().Select(c => new SelectListItem { Text = c.Title.ToString(), Value = c.CourseID.ToString() });
             switch (sortOrder)
             {
                 case "id_desc":
@@ -54,19 +53,19 @@ namespace NetCore.Controllers
         [HttpPost]
         public IActionResult AddStudent(Student student)
         {
-            _StudentRepository.AddStudent(student);
+            _unitofWork.StudentRepository.AddStudent(student);
             return RedirectToAction("Index", "Home");
         }
 
         public IActionResult DeleteStudent(int id)
         {
-            _StudentRepository.DeleteStudent(id);
+            _unitofWork.StudentRepository.DeleteStudent(id);
             return RedirectToAction("Index", "Home");
         }
 
         public IActionResult UpdateStudent(Student student)
         {
-            _StudentRepository.UpdateStudent(student);
+            _unitofWork.StudentRepository.UpdateStudent(student);
             return RedirectToAction("Index", "Home");
         }
 
@@ -82,7 +81,7 @@ namespace NetCore.Controllers
             ViewData["CurrentSort"] = sortOrder;
             ViewData["IDSortParm"] = sortOrder == "id_desc" ? "" : "id_desc";
 
-            var ListAll = _CourseRepository.GetCourses();
+            var ListAll = _unitofWork.CourseRepository.GetCourses();
 
             switch (sortOrder)
             {
@@ -102,19 +101,19 @@ namespace NetCore.Controllers
         
         public IActionResult DeleteCourse(int id)
         {
-            _CourseRepository.DeleteCourse(id);
+            _unitofWork.CourseRepository.DeleteCourse(id);
             return RedirectToAction("Course", "Home");
         }
 
         public IActionResult UpdateCourse(Course course)
         {
-            _CourseRepository.UpdateCourse(course);
+            _unitofWork.CourseRepository.UpdateCourse(course);
             return RedirectToAction("Course", "Home");
         }
 
         public IActionResult AddCourse(Course course)
         {
-            _CourseRepository.AddCourse(course);
+            _unitofWork.CourseRepository.AddCourse(course);
             return RedirectToAction("Course", "Home");
         }
 

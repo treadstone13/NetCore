@@ -6,7 +6,7 @@ using DTO.Models.School;
 
 namespace BIZ.DI.Interfaces
 {
-    public interface IStudentRepository
+    public interface IStudentRepository<Student>
     {
         IEnumerable<Student> GetStudents();
         Student GetStudent(Student student);

@@ -10,6 +10,7 @@ using DTO.Data;
 using DTO.Models;
 using DTO.Models.User;
 using X.PagedList;
+using System.Security.Claims;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -83,14 +84,16 @@ namespace NetCore.Controllers
             {
                 ApplicationUser applicationUser = new ApplicationUser();
                 applicationUser.UserName = model.Email;
-                applicationUser.Email = model.Email;                
+                applicationUser.Email = model.Email;         
+                
                 IdentityResult roleRuslt = await _userManager.CreateAsync(applicationUser, model.Password);
+                
                 if (roleRuslt.Succeeded)
                 {
                     ApplicationRole applicationRole = await _roleManager.FindByIdAsync(model.ApplicationRoleId);
                     if (applicationRole != null)
                     {
-                        IdentityResult roleResult = await _userManager.AddToRoleAsync(applicationUser, applicationRole.Name);
+                        IdentityResult roleResult = await _userManager.AddToRoleAsync(applicationUser, applicationRole.Name);                        
                         if (roleResult.Succeeded)
                         {
                             return RedirectToAction("Index", "User");

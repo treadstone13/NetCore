@@ -14,6 +14,7 @@ using BIZ.DI.Services;
 using BIZ.DI.Interfaces;
 using BIZ.DI.Implementation;
 using BIZ.DI.Middleware;
+using DTO.Models.School;
 
 namespace NetCore
 {
@@ -31,9 +32,9 @@ namespace NetCore
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
-            services.AddScoped<IStudentRepository, StudentRepository>();
-            services.AddScoped<ICourseRepository, CourseRepository>();
+            services.AddScoped<IUnitofWork, UnitofWork>();
+            services.AddScoped<IStudentRepository<Student>, StudentRepository>();
+            services.AddScoped<ICourseRepository<Course>, CourseRepository>();
             services.AddTransient<IRequestRepository, RequestRepository>();
             services.AddTransient<MiddlewareRepository>();
 
