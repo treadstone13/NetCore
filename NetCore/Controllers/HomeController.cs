@@ -7,9 +7,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using NetCore.DI.Interfaces;
-using NetCore.Models;
-using NetCore.Models.School;
+using BIZ.DI.Interfaces;
+using DTO.Models;
+using DTO.Models.School;
 using X.PagedList;
 
 namespace NetCore.Controllers

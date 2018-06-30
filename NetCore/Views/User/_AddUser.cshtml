@@ -2,14 +2,14 @@
 @using System.Linq
 @using Microsoft.AspNetCore.Http
 @using Microsoft.AspNetCore.Http.Authentication
-@model NetCore.Models.User.UserModel
+@model DTO.Models.User.UserModel
 @inject SignInManager<ApplicationUser> SignInManager
 
 @{
     ViewData["Title"] = "Add User";
 }
 
-<h2>@ViewData["Title"]</h2>
+@*<h2>@ViewData["Title"]</h2>*@
 
 <div id="userAddModal" class="modal fade" role="dialog">
     <div class="modal-dialog">

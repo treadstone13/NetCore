@@ -8,12 +8,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using NetCore.Data;
-using NetCore.Models;
-using NetCore.Services;
-using NetCore.DI.Interfaces;
-using NetCore.DI.Implementation;
-using NetCore.DI.Middleware;
+using DTO.Data;
+using DTO.Models;
+using BIZ.DI.Services;
+using BIZ.DI.Interfaces;
+using BIZ.DI.Implementation;
+using BIZ.DI.Middleware;
 
 namespace NetCore
 {

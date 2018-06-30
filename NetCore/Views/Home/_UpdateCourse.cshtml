@@ -2,14 +2,14 @@
 @using System.Linq
 @using Microsoft.AspNetCore.Http
 @using Microsoft.AspNetCore.Http.Authentication
-@model NetCore.Models.School.Course
+@model DTO.Models.School.Course
 @inject SignInManager<ApplicationUser> SignInManager
 
 @{
     ViewData["Title"] = "Update Course";
 }
 
-<h2>@ViewData["Title"]</h2>
+@*<h2>@ViewData["Title"]</h2>*@
 
 <div id="courseUpdateModal" class="modal fade" role="dialog">
     <div class="modal-dialog">

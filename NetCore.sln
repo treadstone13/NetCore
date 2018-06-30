@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2026
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCore", "NetCore\NetCore.csproj", "{62E1AA62-449E-448F-9D1B-0C3BAEFADB02}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCore", "NetCore\NetCore.csproj", "{62E1AA62-449E-448F-9D1B-0C3BAEFADB02}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTO", "DTO\DTO.csproj", "{696E864F-421E-4F4D-946D-8806062EE118}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BIZ", "BIZ\BIZ.csproj", "{50B928FA-41EE-459F-A632-346BA9170AFB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{62E1AA62-449E-448F-9D1B-0C3BAEFADB02}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62E1AA62-449E-448F-9D1B-0C3BAEFADB02}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62E1AA62-449E-448F-9D1B-0C3BAEFADB02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{696E864F-421E-4F4D-946D-8806062EE118}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{696E864F-421E-4F4D-946D-8806062EE118}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{696E864F-421E-4F4D-946D-8806062EE118}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{696E864F-421E-4F4D-946D-8806062EE118}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50B928FA-41EE-459F-A632-346BA9170AFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50B928FA-41EE-459F-A632-346BA9170AFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50B928FA-41EE-459F-A632-346BA9170AFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50B928FA-41EE-459F-A632-346BA9170AFB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

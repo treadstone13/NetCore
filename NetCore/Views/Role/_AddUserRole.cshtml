@@ -2,14 +2,14 @@
 @using System.Linq
 @using Microsoft.AspNetCore.Http
 @using Microsoft.AspNetCore.Http.Authentication
-@model NetCore.Models.ApplicationRole
+@model DTO.Models.ApplicationRole
 @inject SignInManager<ApplicationUser> SignInManager
 
 @{
     ViewData["Title"] = "Add Role";
 }
 
-<h2>@ViewData["Title"]</h2>
+@*<h2>@ViewData["Title"]</h2>*@
 
 @if (SignInManager.IsSignedIn(User))
 {

@@ -10,9 +10,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using NetCore.Models;
-using NetCore.Models.AccountViewModels;
-using NetCore.Services;
+using DTO.Models;
+using DTO.Models.AccountViewModels;
+using BIZ.DI.Services;
 
 namespace NetCore.Controllers
 {

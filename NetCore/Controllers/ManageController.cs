@@ -10,9 +10,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using NetCore.Models;
-using NetCore.Models.ManageViewModels;
-using NetCore.Services;
+using DTO.Models;
+using DTO.Models.ManageViewModels;
+using BIZ.DI.Services;
 
 namespace NetCore.Controllers
 {

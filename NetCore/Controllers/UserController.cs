@@ -6,9 +6,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using NetCore.Data;
-using NetCore.Models;
-using NetCore.Models.User;
+using DTO.Data;
+using DTO.Models;
+using DTO.Models.User;
 using X.PagedList;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860

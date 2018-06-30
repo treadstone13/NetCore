@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
-using NetCore.Services;
+using BIZ.DI.Services;
 
-namespace NetCore.Services
+namespace BIZ.DI.Services
 {
     public static class EmailSenderExtensions
     {
