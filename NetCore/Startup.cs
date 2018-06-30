@@ -38,7 +38,9 @@ namespace NetCore
             services.AddTransient<IRequestRepository, RequestRepository>();
             services.AddTransient<MiddlewareRepository>();
 
-
+            services.AddAuthorization(opts => {
+                opts.AddPolicy("Admin", policy => policy.RequireClaim("Admin"));
+            });
             services.AddIdentity<ApplicationUser, ApplicationRole>(options => {
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireUppercase = false;

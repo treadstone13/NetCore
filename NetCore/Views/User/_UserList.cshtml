@@ -38,7 +38,7 @@
 
                 }
             </table>
-            @*@Html.PagedListPager((IPagedList)ViewBag.onePageOfUser, page => Url.Action("Index", "User", new { page }))*@
+            @Html.PagedListPager((IPagedList)ViewBag.UserList, page => Url.Action("Index", "User", new { page }))
         </div>
     </div>
 }

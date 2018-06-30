@@ -10,11 +10,14 @@
         <ul class="nav navbar-nav">
             <li><a asp-area="" asp-controller="Home" asp-action="Index">Student</a></li>
             <li><a asp-area="" asp-controller="Home" asp-action="Course">Course</a></li>   
-            @*@if ((await AuthorizationService.AuthorizeAsync(User, "Admin")).Succeeded)
+            @if ((await AuthorizationService.AuthorizeAsync(User, "Admin")).Succeeded)
             {
                 <li><a asp-area="" asp-controller="User" asp-action="Index">User</a></li>
                 <li><a asp-area="" asp-controller="Role" asp-action="UserRole">Role</a></li>   
-            }*@
+            }
+            else
+            {
+            }
         </ul>
     </div>
 }

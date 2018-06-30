@@ -24,7 +24,7 @@ namespace NetCore.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
-
+       
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
@@ -58,12 +58,17 @@ namespace NetCore.Controllers
         {
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
-            {
+            {                
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
+                    ApplicationUser applicationUser = await _userManager.FindByEmailAsync(model.Email);
+                    var rolename = await _userManager.GetRolesAsync(applicationUser);
+                    var getClaim = await _userManager.GetClaimsAsync(applicationUser);
+                    if(getClaim.Count == 0)
+                        await _userManager.AddClaimAsync(applicationUser, new Claim(rolename[0].ToString(), rolename[0].ToString()));
                     _logger.LogInformation("User logged in.");
                     return RedirectToLocal(returnUrl);
                 }

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using DTO.Models;
+using X.PagedList;
 
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -24,7 +25,7 @@ namespace NetCore.Controllers
 
 
         // GET: /<controller>/
-        public IActionResult UserRole()
+        public IActionResult UserRole(int? page)
         {
             List<ApplicationRole> model = new List<ApplicationRole>();
             model = _roleManager.Roles.Select(role => new ApplicationRole
@@ -35,7 +36,13 @@ namespace NetCore.Controllers
                 Description = role.Description,
                 CreatedDate = role.CreatedDate
             }).ToList();
-            ViewBag.UserRoleList = model;
+
+            //ViewBag.UserRoleList = model;
+            var pageNumber = page ?? 1;
+            var onePageOfRole = model.ToPagedList(pageNumber, 5);
+            ViewBag.UserRoleList = onePageOfRole;
+
+
             return View();
         }
         [Authorize(Roles="Admin")]

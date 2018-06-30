@@ -39,12 +39,10 @@ namespace NetCore.Controllers
                
             }).ToList();
             
-            ViewBag.UserList = model;
-           
-
-         
-
-
+            //ViewBag.UserList = model;
+            int numberPage = page ?? 1;
+            var onePageOfUser = model.ToPagedList(numberPage, 5);
+            ViewBag.UserList = onePageOfUser;
 
 
             UserModel modelSelectList = new UserModel();

@@ -19,8 +19,8 @@
 
             <table class="table">
                 <tr>
-                    <td><a asp-action="Index" asp-route-sortOrder="@ViewData["IDSortParm"]">ID</a></td>
-                    <td><a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">Name</a></td>
+                    <td>ID</td>
+                    <td>Name</td>
                     <td>CreatedDate</td>
                     <td>Description</td>
                     <td>IPAddress</td>
@@ -41,7 +41,7 @@
 
                 }
             </table>
-            @*@Html.PagedListPager((IPagedList)ViewBag.onePageOfRole, page => Url.Action("UserRole", new { page }))*@
+            @Html.PagedListPager((IPagedList)ViewBag.UserRoleList, page => Url.Action("UserRole", "Role", new { page }))
         </div>
     </div>
 }
