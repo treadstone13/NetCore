@@ -5,8 +5,6 @@ $(document).ready(function () {
         $("#studentAddModal").modal();
     })
 })
-
-
 $(document).ready(function () {
     $('.updateS').on('click', function () {
         var bid = $(this).closest('td').parent();
@@ -16,13 +14,11 @@ $(document).ready(function () {
     })
 })  
 
-
 $(document).ready(function () {
     $('#AddCourse').on('click', function () {
         $("#courseAddModal").modal();
     })
 })
-
 
 $(document).ready(function () {
     $('.updateC').on('click', function () {
@@ -33,14 +29,11 @@ $(document).ready(function () {
     })
 })  
 
-
-
 $(document).ready(function () {
     $('#AddUserRole').on('click', function () {
         $("#userAddModal").modal();
     })
 })
-
 
 $(document).ready(function () {
     $('.updateR').on('click', function () {
@@ -51,19 +44,11 @@ $(document).ready(function () {
     })
 })
 
-
-
-
-
-
-
-
 $(document).ready(function () {
     $('#AddUser').on('click', function () {
         $("#userAddModal").modal();
     })
 })
-
 
 $(document).ready(function () {
     $('.updateU').on('click', function () {

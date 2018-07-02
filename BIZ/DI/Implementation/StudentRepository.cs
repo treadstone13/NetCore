@@ -33,9 +33,9 @@ namespace BIZ.DI.Implementation
             
         }
 
-        public Student GetStudent(Student student)
+        public Student GetStudent(int id)
         {
-            var s = ctx.Students.FirstOrDefault(b => b.StudentID == student.StudentID);
+            var s = ctx.Students.FirstOrDefault(b => b.StudentID == id);
             return s;
           
         }
