@@ -56,6 +56,7 @@ namespace BIZ.DI.Implementation
                 s.FirstName = student.FirstName;
                 s.LastName = student.LastName;
                 s.Address = student.Address;
+                s.PhoneNumber = student.PhoneNumber;
                 s.CourseID = student.CourseID;
                 ctx.SaveChanges();
             }

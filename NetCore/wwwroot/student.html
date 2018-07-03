@@ -7,7 +7,7 @@
     <script src="lib/jquery/dist/jquery.js"></script>
     <script src="lib/vue/dist/vue.js"></script>
     <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="js/axios.min.js"></script>
 </head>
 <body>
     <h3 style="margin-left: 20px">Student List</h3>
@@ -32,9 +32,9 @@
                 <td>{{item.lastName}}</td>
                 <td>{{item.address}}</td>
                 <td>{{item.phoneNumber}}</td>
-                <td>{{item.phoneNumber}}</td>
-                <td><a>Update</a></td>
-                <td><a>Delete</a></td>
+                <td>{{item.courseID}}</td>
+                <td><a class="updateS">Update</a></td>
+                <td><button v-on:click="deleteStudent(item.studentID)">Delete</button></td>
 
             </tr>
         </table>
@@ -54,36 +54,38 @@
                     <form method="post" id="formAddStudent">
                         <div class="form-group">
                             <label>FirstName</label>
-                            <input class="form-control" v-model="firstName"/>
+                            <input class="form-control" v-model="firstName" />
                             <span class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label>LastName</label>
-                            <input class="form-control" v-model="lastName"/>
+                            <input class="form-control" v-model="lastName" />
                             <span class="text-danger"></span>
                         </div>
 
                         <div class="form-group">
                             <label>Address</label>
-                            <input class="form-control" v-model="address"/>
+                            <input class="form-control" v-model="address" />
                             <span class="text-danger"></span>
                         </div>
 
                         <div class="form-group">
                             <label>PhoneNumber</label>
-                            <input class="form-control" v-model="phoneNumber"/>
+                            <input class="form-control" v-model="phoneNumber" />
                             <span class="text-danger"></span>
                         </div>
-                        <div class="form-group">
+
+                        <div class="form-group" id="CourseDD">
                             <label>Course</label>
-                            <select class="form-control" v-model="courseID">                                
+                            <select class="form-control" v-model="ID">
                                 <option v-for="opt in opts" v-bind:value="opt.courseID">
                                     {{opt.title}}
                                 </option>
-                            </select>                            
+                            </select>
                         </div>
+
                         <div class="form-group">
-                            <button type="submit" class="btn btn-default" v-on:click="addStudent" >Add</button>
+                            <button type="submit" class="btn btn-default" v-on:click="addStudent">Add</button>
                         </div>
                     </form>
                 </div>
@@ -92,12 +94,87 @@
     </div>
 
 
-    <script>    
+
+    <div id="studentUpdateModalAPI" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Add Student</h4>
+                </div>
+                <div class="modal-body">
+                    <form method="post" id="formAddStudent">
+                        <div class="form-group">
+                            <label>StudentID</label>
+                            <input id="StudentID" class="form-control" v-model="studentID" />
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>FirstName</label>
+                            <input class="form-control" v-model="firstName" />
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>LastName</label>
+                            <input class="form-control" v-model="lastName" />
+                            <span class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Address</label>
+                            <input class="form-control" v-model="address" />
+                            <span class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>PhoneNumber</label>
+                            <input class="form-control" v-model="phoneNumber" />
+                            <span class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group" id="CourseDD">
+                            <label>Course</label>
+                            <select class="form-control" v-model="ID">
+                                <option v-for="opt in opts" v-bind:value="opt.courseID">
+                                    {{opt.title}}
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-default" v-on:click="updateStudent">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <script>
         $(document).ready(function () {
             $('#AddStudentAPI').on('click', function () {
                 $("#studentAddModalAPI").modal();
             })
         })
+
+
+        $(document).ready(function () {
+            $('.updateS').on('click', function () {
+                var bid = $(this).closest('td').parent();
+                console.log(bid);
+                document.getElementById('StudentID').value = bid[0].firstElementChild.innerHTML;
+                //$("#studentUpdateModal").modal();
+                $("#studentUpdateModalAPI").modal();
+
+            })
+        })
+
+
         var app = new Vue({
             el: '#StudentList',
             data: {
@@ -106,38 +183,47 @@
             //created: function () {
             //    var self = this;
             //    $.getJSON('http://localhost:60630/api/student', function (studentjson) {
-            //      self.student = studentjson;                  
-            //    })              
+            //      self.student = studentjson;
+            //    })
             //}
-            created: function() {
+            created: function () {
                 axios
                     .get('http://localhost:60630/api/student')
                     .then(response => {
                         //console.log(response);
                         this.student = response.data
                     })
+            },
+            methods: {
+                deleteStudent: function (id) {
+                    axios.delete('http://localhost:60630/api/student/' + id).then(function () {
+                        location.reload(true);
+                    }).catch(function (error) {
+                        console.log(error);
+                    })
+                }
             }
 
-        })
 
+        })
 
         var app2 = new Vue({
             el: '#formAddStudent',
             data: {
                 opts: [],
+                studentID: null,
+                firstName: null,
+                lastName: null,
+                address: null,
+                phoneNumber: null,
+                ID: null,
             },
-            created: function () {                   
+            created: function () {
                 axios.get('http://localhost:60630/api/course')
                     .then(responseC => {
                         this.opts = responseC.data;
                         //console.log(responseC.data);
-                    })                
-            }
-        })
-
-        var app3 = new Vue({
-            el: '#formAddStudent',
-            data: {
+                    })
             },
             methods: {
                 addStudent: function () {
@@ -146,11 +232,33 @@
                         lastName: this.lastName,
                         address: this.address,
                         phoneNumber: this.phoneNumber,
-                        courseID: this.courseID,
+                        courseID: this.ID,
+                    }).catch(function (error) {
+                        console.log(error);
+                    })
+                },
+                updateStudent: function () {                    
+                    var as = document.getElementById('StudentID').value;                   
+                    axios.put('http://localhost:60630/api/student', {
+                        studentID: as,
+                        firstName: this.firstName,
+                        lastName: this.lastName,
+                        address: this.address,
+                        phoneNumber: this.phoneNumber,
+                        courseID: 1003,
+                    }).then(function () {
+                        location.reload(true);
+                    }
+                    ).catch(function (error) {
+                        console.log(error);
                     })
                 }
+
+
+
             }
         })
+
     </script>
     <script src="lib/jquery/dist/jquery.js"></script>
     <script src="lib/vue/dist/vue.js"></script>
